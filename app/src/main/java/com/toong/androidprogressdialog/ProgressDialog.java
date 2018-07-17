@@ -1,7 +1,7 @@
 package com.toong.androidprogressdialog;
 
+import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Window;
@@ -13,9 +13,9 @@ import android.view.Window;
 
 public class ProgressDialog {
     private Dialog dialog;
-    private Context mContext;
+    private Activity mContext;
 
-    public ProgressDialog(Context context) {
+    public ProgressDialog(Activity context) {
         this.mContext = context;
     }
 
@@ -46,7 +46,7 @@ public class ProgressDialog {
     }
 
     public void dismiss() {
-        if (dialog != null) {
+        if (dialog != null && !mContext.isDestroyed() && !mContext.isFinishing()) {
             dialog.dismiss();
         }
     }
